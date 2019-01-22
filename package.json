@@ -13,5 +13,8 @@
   "bugs": {
     "url": "https://github.com/akshatmittal/youtube-realtime/issues"
   },
-  "homepage": "https://akshatmittal.com/youtube-realtime/"
+  "homepage": "https://akshatmittal.com/youtube-realtime/",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
 }
