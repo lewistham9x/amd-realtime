@@ -1,0 +1,3 @@
+.odometer-inside:before {
+    content: "$";
+}
