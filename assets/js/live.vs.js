@@ -2,12 +2,13 @@ YT.live = {
     vs1: "",
     vs2: "",
     update: function () {
-        $.getJSON("https://www.googleapis.com/youtube/v3/channels?part=statistics&id=" + encodeURIComponent(YT.live.vs1 + "," + YT.live.vs2) + "&key=" + YT.keyManager.getKey(), function (e) {
-            if(e.items[0].id == YT.live.vs1) {
-                YT.updateManager.updateSubscribers(e.items[0].statistics.subscriberCount, e.items[1].statistics.subscriberCount);    
-            } else {
-                YT.updateManager.updateSubscribers(e.items[1].statistics.subscriberCount, e.items[0].statistics.subscriberCount);    
-            }
+        $.getJSON("https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&interval=1min&apikey=" + YT.keyManager.getKey() + "&outputsize=compact&symbol=NASDAQ:AMD", function (e) {
+            console.log(e)
+            var time = e["Meta Data"]["3. Last Refreshed"]
+            console.log(time)
+            var high = e["Time Series (1min)"][time]["2. high"]
+            console.log(high)
+            YT.updateManager.updateSubscribers(high, high);    
         });
     },
     timer: null,
@@ -19,9 +20,10 @@ YT.live = {
     start: function () {
         this.stop();
         YT.query.begin();
+        YT.live.update();
         this.timer = setInterval(function (e) {
             YT.live.update();
-        }, 2000);
+        }, 12000);
     },
     stop: function () {
         clearInterval(this.timer);

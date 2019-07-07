@@ -5,7 +5,7 @@ YT.updateManager = {
             new Odometer({
                 el: document.querySelector(e),
                 value: "0",
-                format: '(,ddd)',
+                format: '(,ddd).dd',
                 theme: 'minimal'
             });
         });
