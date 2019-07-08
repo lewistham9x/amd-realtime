@@ -34,7 +34,7 @@ YT.keyManager = {
 		}
 		//this.keyIndex = (this.keyIndex + 1) % this.keys.length;
 		*/
-		shuffleKeys();
+		this.shuffleKeys();
 		console.log(keys[0]);
 		return this.keys[0];
 	},
