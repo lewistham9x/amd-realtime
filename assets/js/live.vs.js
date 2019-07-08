@@ -23,7 +23,7 @@ YT.live = {
         YT.live.update();
         this.timer = setInterval(function (e) {
             YT.live.update();
-        }, 12000);
+        }, 30000);
     },
     stop: function () {
         clearInterval(this.timer);

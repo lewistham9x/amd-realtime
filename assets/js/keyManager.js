@@ -2,11 +2,11 @@ YT.keyManager = {
 	keys: [
 		//'AIzaSyDsQOIl7ah_JdsS-JRwjUDAy-5-K-LQte8',
 		//'AIzaSyB_S2ijgYTDPdHIXe4QR4h71uoTbzZSngc',
-		//'QZ4WB75H4FO08HWR',
-		//'U7S9RGT0T7PT49IQ',
-		//'AXN1BC4I5GOQYVV4',
-		//'NRJEFFIKLMKEVZTQ',
-		//'B95DRZMDHQHN0O0G',
+		'QZ4WB75H4FO08HWR',
+		'U7S9RGT0T7PT49IQ',
+		'AXN1BC4I5GOQYVV4',
+		'NRJEFFIKLMKEVZTQ',
+		'B95DRZMDHQHN0O0G',
 		'AO1XDU2U3RGSDJW9',
 		'0UYZ2F1G6AF178UZ',
 		'B0LNH8A516BIABLM',
@@ -18,7 +18,15 @@ YT.keyManager = {
 	],
 	keyIndex: 0,
 	getKey: function() {
-		this.keyIndex = (this.keyIndex + 1) % this.keys.length;
+		if (this.keyIndex < this.keys.length-1)
+		{
+			this.keyIndex=this.keyIndex+1;
+		}
+		else
+		{
+			this.keyIndex=0;
+		}
+		//this.keyIndex = (this.keyIndex + 1) % this.keys.length;
 		return this.keys[this.keyIndex];
 	},
 	shuffleKeys: function() {
