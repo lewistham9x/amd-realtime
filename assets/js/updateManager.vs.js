@@ -26,5 +26,8 @@ YT.updateManager = {
         $("#yt_subs_vs1").text(e);
         $("#yt_subs_vs2").text(f);
         $("#yt_diff").text(Math.abs(parseInt(e) - parseInt(f)))
+    },
+    updateTime: function(e) {
+        $("#time").text(e);
     }
 };
