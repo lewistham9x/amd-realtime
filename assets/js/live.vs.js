@@ -12,7 +12,7 @@ YT.live = {
             YT.updateManager.updateSubscribers(high, high);    
         });
         */
-        $.getJSON("https://ayymd-realtime.herokuapp.com/", function (e) {
+        $.getJSON("https://ayymd-realtime.herokuapp.com/stock", function (e) {
             console.log(e)
             var time = e["time"]
             console.log(time)
