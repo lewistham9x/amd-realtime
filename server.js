@@ -35,7 +35,7 @@ var eval = {'time': "time", 'price': "0"};
 app.get('/stock', function(req, res) {
 	(async () => {
 	  res.json({'time': eval.time, 'price': eval.price});
-	  const browser = await puppeteer.launch({args: ['--no-sandbox','--disable-setuid-sandbox'], headless: true});
+	  const browser = await puppeteer.launch({args: ['--no-sandbox','--disable-setuid-sandbox'], headless: true}); //heroku args
 	  const page = await browser.newPage();
 
 	  process.on("unhandledRejection", (reason, p) => {
