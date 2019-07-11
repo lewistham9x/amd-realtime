@@ -33,8 +33,12 @@ var eval = {'time': "time", 'price': "0"};
 
 // Send stock requests 
 app.get('/stock', function(req, res) {
-	(async () => {
 	  res.json({'time': eval.time, 'price': eval.price});
+	  getStock();
+})
+
+function getStock(){
+		(async () => {
 	  const browser = await puppeteer.launch({args: ['--no-sandbox','--disable-setuid-sandbox'], headless: true}); //heroku args
 	  const page = await browser.newPage();
 
@@ -65,9 +69,7 @@ app.get('/stock', function(req, res) {
 
 	  await browser.close();
 	})();
-
-
-})
+}
 
 // default Heroku port
 app.listen(process.env.PORT || 5000);
