@@ -30,11 +30,17 @@ app.get('/', function(req, res) {
 
 //cache stock price
 var eval = {'time': "time", 'price': "0"};
+start();
+
+function start(){
+	  this.timer = setInterval(function (e) {
+	    getStock();
+	}, 5000);
+}
 
 // Send stock requests 
 app.get('/stock', function(req, res) {
 	  res.json({'time': eval.time, 'price': eval.price});
-	  getStock();
 })
 
 function getStock(){
