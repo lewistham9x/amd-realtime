@@ -29,21 +29,22 @@ app.get('/', function(req, res) {
 
 
 //cache stock price
-var eval = {'time': "time", 'price': "0"};
+var stocks = {time: "420pm"};
 start();
 
 function start(){
 	  this.timer = setInterval(function (e) {
-	    getStock();
+	    getStock("amd");
+	    getStock("intc");
 	}, 5000);
 }
 
 // Send stock requests 
 app.get('/stock', function(req, res) {
-	  res.json({'time': eval.time, 'price': eval.price});
+	  res.json(stocks);
 })
 
-function getStock(){
+function getStock(symbol){
 		(async () => {
 	  const browser = await puppeteer.launch({args: ['--no-sandbox','--disable-setuid-sandbox'], headless: true}); //heroku args
 	  const page = await browser.newPage();
@@ -57,21 +58,25 @@ function getStock(){
 		//await sleep(1000);
 
 		try{	  
-			await page.goto('https://www.nasdaq.com/symbol/amd/time-sales', {waitUntil: 'domcontentloaded', timeout: 0});
+			await page.goto('https://www.nasdaq.com/symbol/'+symbol+'/time-sales', {waitUntil: 'domcontentloaded', timeout: 0});
 		}
 		catch(error) {
 			console.log(error)
 			browser.close()
 		}
 
-	  eval = await page.evaluate(() => {
-	    return {
-	      time: document.getElementById('AfterHoursPagingContents_Table').getElementsByTagName('tbody')[0].getElementsByTagName('tr')[0].getElementsByTagName('td')[0].textContent,
-	      price: parseFloat(document.getElementById('AfterHoursPagingContents_Table').getElementsByTagName('tbody')[0].getElementsByTagName('tr')[0].getElementsByTagName('td')[1].textContent.substring(2))
-	    };
+	  stocks[symbol] = await page.evaluate(() => {
+	    return parseFloat(document.getElementById('AfterHoursPagingContents_Table').getElementsByTagName('tbody')[0].getElementsByTagName('tr')[0].getElementsByTagName('td')[1].textContent.substring(2));
 	  });
 
-	  console.log(eval);	  
+	  stocks.time = await page.evaluate(() => {
+	    return document.getElementById('AfterHoursPagingContents_Table').getElementsByTagName('tbody')[0].getElementsByTagName('tr')[0].getElementsByTagName('td')[0].textContent;
+	  });
+
+
+	  console.log(stocks);	  
+
+	  page.close();
 
 	  await browser.close();
 	})();
