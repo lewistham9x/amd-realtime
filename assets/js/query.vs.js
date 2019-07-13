@@ -9,10 +9,10 @@ YT.query = {
         });
     },
     begin: function () {
-        YT.updateManager.updateName("NASDAQ:AMD")
+        YT.updateManager.updateName("NASDAQ:AMD","NASDAQ:INTC")
 
         //hardcode update ayymd
-        YT.updateManager.updateProfile("https://styles.redditmedia.com/t5_38z4q/styles/communityIcon_nchjpk8l4pu01.png");
+        YT.updateManager.updateProfile("https://styles.redditmedia.com/t5_38z4q/styles/communityIcon_nchjpk8l4pu01.png","https://b.thumbs.redditmedia.com/yMdDE4HXzG9j9TkKwwuLHQTbfkAiUO_jVXhy5jV9BMM.png");
     },
     bind: function () {
 

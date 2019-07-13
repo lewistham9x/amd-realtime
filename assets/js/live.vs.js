@@ -12,15 +12,11 @@ YT.live = {
             YT.updateManager.updateSubscribers(high, high);    
         });
         */
-        //$.getJSON("http://localhost:5000/stock", function (e) {
-        $.getJSON("https://ayymd-realtime.herokuapp.com/stock", function (e) {
+        $.getJSON("http://localhost:5000/stock", function (e) {
+        //$.getJSON("https://ayymd-realtime.herokuapp.com/stock", function (e) {
             console.log(e)
-            var time = e["time"]
-            console.log(time)
-            var high = e["price"]
-            console.log(high)
-            YT.updateManager.updateSubscribers(high, high);    
-            YT.updateManager.updateTime(time);
+            YT.updateManager.updateSubscribers(e.amd, e.intc);    
+            YT.updateManager.updateTime(e.time);
         });
     },
     timer: null,

@@ -46,7 +46,7 @@ app.get('/stock', function(req, res) {
 
 function getStock(symbol){
 		(async () => {
-	  const browser = await puppeteer.launch({args: ['--no-sandbox','--disable-setuid-sandbox'], headless: true}); //heroku args
+	  const browser = await puppeteer.launch({args: ['--disable-dev-shm-usage','--no-sandbox','--disable-setuid-sandbox'], headless: true}); //heroku args
 	  const page = await browser.newPage();
 
 	  process.on("unhandledRejection", (reason, p) => {
@@ -75,8 +75,6 @@ function getStock(symbol){
 
 
 	  console.log(stocks);	  
-
-	  page.close();
 
 	  await browser.close();
 	})();
